@@ -18,6 +18,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { LogoPulse } from "@/components/logo";
 import { useLoginMutation } from "@/hooks/use-auth-forms";
 import { useSession } from "@/hooks/use-session";
 import { ApiClientError } from "@/lib/api/client";
@@ -58,11 +59,16 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-svh items-center justify-center bg-muted/30 px-4">
-      <Card className="w-full max-w-sm">
+    <div className="flex min-h-svh flex-col items-center justify-center gap-6 bg-muted/30 px-4">
+      <div className="motion-safe:animate-in motion-safe:fade-in motion-safe:zoom-in-95 flex flex-col items-center gap-2 motion-safe:duration-700">
+        <LogoPulse />
+        <span className="text-lg font-semibold tracking-tight">CrisisMesh</span>
+        <span className="text-xs text-muted-foreground">Communication when the network fails.</span>
+      </div>
+      <Card className="w-full max-w-sm motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-4 motion-safe:duration-500">
         <CardHeader>
           <CardTitle>Sign in to CrisisMesh</CardTitle>
-          <CardDescription>Command Center for responders and admins.</CardDescription>
+          <CardDescription>For citizens, responders, and administrators.</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>

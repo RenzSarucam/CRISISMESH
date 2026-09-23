@@ -18,6 +18,7 @@ import {
   X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { LogoMark } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import type { Role } from "@/types";
 
@@ -89,7 +90,7 @@ export function SidebarShell({
   return (
     <aside className="hidden w-64 shrink-0 flex-col border-r bg-card md:flex">
       <div className="flex h-14 items-center gap-2 border-b px-4">
-        <ShieldCheck className="size-5 text-primary" />
+        <LogoMark className="size-6" />
         <span className="text-sm font-semibold tracking-tight">CrisisMesh Command</span>
       </div>
       <DashboardNav role={role} />
@@ -102,7 +103,7 @@ export function MobileSidebarHeader({ onClose }: { onClose: () => void }) {
   return (
     <div className="flex h-14 items-center justify-between border-b px-4">
       <span className="flex items-center gap-2 text-sm font-semibold tracking-tight">
-        <ShieldCheck className="size-5 text-primary" />
+        <LogoMark className="size-6" />
         CrisisMesh Command
       </span>
       <Button variant="ghost" size="icon" onClick={onClose} aria-label="Close menu">

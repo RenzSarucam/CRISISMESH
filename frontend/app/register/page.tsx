@@ -25,6 +25,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { LogoMark } from "@/components/logo";
 import { useRegisterMutation } from "@/hooks/use-auth-forms";
 import { useSession } from "@/hooks/use-session";
 import { ApiClientError } from "@/lib/api/client";
@@ -89,8 +90,12 @@ export default function RegisterPage() {
 
   return (
     <div className="flex min-h-svh items-center justify-center bg-muted/30 px-4 py-8">
-      <Card className="w-full max-w-sm">
+      <Card className="w-full max-w-sm motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-4 motion-safe:duration-500">
         <CardHeader>
+          <div className="mb-1 flex items-center gap-2">
+            <LogoMark className="size-6" />
+            <span className="text-sm font-semibold tracking-tight">CrisisMesh</span>
+          </div>
           <CardTitle>Create an account</CardTitle>
           <CardDescription>Join CrisisMesh as a citizen or responder.</CardDescription>
         </CardHeader>
