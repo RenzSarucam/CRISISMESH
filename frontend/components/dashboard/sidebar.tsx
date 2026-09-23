@@ -126,14 +126,12 @@ export function SidebarShell({
           </span>
         )}
       </div>
-      <DashboardNav role={role} collapsed={collapsed} />
-      <div className={cn("border-t p-2", collapsed && "flex justify-center")}>
+      <div className={cn("flex border-b p-2", collapsed ? "justify-center" : "justify-end")}>
         <Tooltip>
           <TooltipTrigger asChild>
             <Button
               variant="ghost"
               size="icon"
-              className={cn(!collapsed && "w-full justify-start gap-2.5 px-3")}
               onClick={onToggleCollapsed}
               aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
             >
@@ -142,12 +140,14 @@ export function SidebarShell({
               ) : (
                 <PanelLeftClose className="size-4 shrink-0" />
               )}
-              {!collapsed && <span className="text-sm text-muted-foreground">Collapse</span>}
             </Button>
           </TooltipTrigger>
-          {collapsed && <TooltipContent side="right">Expand sidebar</TooltipContent>}
+          <TooltipContent side={collapsed ? "right" : "bottom"}>
+            {collapsed ? "Expand sidebar" : "Collapse sidebar"}
+          </TooltipContent>
         </Tooltip>
       </div>
+      <DashboardNav role={role} collapsed={collapsed} />
       {children}
     </aside>
   );
