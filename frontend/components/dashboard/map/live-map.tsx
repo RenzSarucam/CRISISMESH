@@ -17,7 +17,7 @@ import { useEvacuationCenters } from "@/hooks/use-evacuation-centers";
 import { asItems } from "@/lib/api/as-items";
 import { SEVERITY_COLOR } from "@/lib/chart-colors";
 
-const DEFAULT_CENTER: [number, number] = [14.5995, 120.9842]; // Manila — reasonable default; real deployments should center on their AOI
+const DEFAULT_CENTER: [number, number] = [7.0707, 125.6087]; // Davao City — matches the seeded demo data's area of interest
 
 function sinceParam(preset?: string): string | undefined {
   if (!preset) return undefined;
