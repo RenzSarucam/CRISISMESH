@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/form";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { LogoPulse } from "@/components/logo";
+import { MeshBackground } from "@/components/mesh-background";
 import { useLoginMutation } from "@/hooks/use-auth-forms";
 import { useSession } from "@/hooks/use-session";
 import { ApiClientError } from "@/lib/api/client";
@@ -59,13 +60,17 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center gap-6 bg-muted/30 px-4">
-      <div className="motion-safe:animate-in motion-safe:fade-in motion-safe:zoom-in-95 flex flex-col items-center gap-2 motion-safe:duration-700">
+    <div className="dark cm-dark relative flex min-h-svh flex-col items-center justify-center gap-6 overflow-hidden bg-background px-4 text-foreground">
+      <MeshBackground />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background" />
+
+      <div className="relative z-10 flex flex-col items-center gap-2 motion-safe:animate-in motion-safe:fade-in motion-safe:zoom-in-95 motion-safe:duration-700">
         <LogoPulse />
         <span className="text-lg font-semibold tracking-tight">CrisisMesh</span>
         <span className="text-xs text-muted-foreground">Communication when the network fails.</span>
       </div>
-      <Card className="w-full max-w-sm motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-4 motion-safe:duration-500">
+
+      <Card className="relative z-10 w-full max-w-sm border-white/10 bg-card/90 shadow-2xl shadow-black/40 backdrop-blur-sm motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-4 motion-safe:duration-500">
         <CardHeader>
           <CardTitle>Sign in to CrisisMesh</CardTitle>
           <CardDescription>For citizens, responders, and administrators.</CardDescription>

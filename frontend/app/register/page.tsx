@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/form";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { LogoMark } from "@/components/logo";
+import { MeshBackground } from "@/components/mesh-background";
 import { useRegisterMutation } from "@/hooks/use-auth-forms";
 import { useSession } from "@/hooks/use-session";
 import { ApiClientError } from "@/lib/api/client";
@@ -89,8 +90,10 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="flex min-h-svh items-center justify-center bg-muted/30 px-4 py-8">
-      <Card className="w-full max-w-sm motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-4 motion-safe:duration-500">
+    <div className="dark cm-dark relative flex min-h-svh items-center justify-center overflow-hidden bg-background px-4 py-8 text-foreground">
+      <MeshBackground />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background" />
+      <Card className="relative z-10 w-full max-w-sm border-white/10 bg-card/90 shadow-2xl shadow-black/40 backdrop-blur-sm motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-4 motion-safe:duration-500">
         <CardHeader>
           <div className="mb-1 flex items-center gap-2">
             <LogoMark className="size-6" />

@@ -124,7 +124,7 @@ export default function LiveMap() {
   return (
     <div className="flex h-full flex-col overflow-hidden rounded-lg border">
       <MapFilterBar filters={filters} onChange={setFilters} />
-      <div className="relative flex-1">
+      <div className="relative flex-1 [&_.leaflet-tile-pane]:brightness-[0.85] [&_.leaflet-tile-pane]:contrast-[0.9] [&_.leaflet-tile-pane]:hue-rotate-180 [&_.leaflet-tile-pane]:invert">
         <MapContainer center={DEFAULT_CENTER} zoom={12} className="h-full w-full" scrollWheelZoom>
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

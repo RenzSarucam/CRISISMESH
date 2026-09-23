@@ -29,7 +29,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   if (loading || !user || user.role === "citizen") {
     return (
-      <div className="flex min-h-svh items-center justify-center bg-muted/30">
+      <div className="dark cm-dark flex min-h-svh items-center justify-center bg-background">
         <div className="flex w-full max-w-sm flex-col gap-3 p-6">
           <Skeleton className="h-8 w-2/3" />
           <Skeleton className="h-4 w-full" />
@@ -41,7 +41,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   }
 
   return (
-    <div className="flex h-svh overflow-hidden bg-muted/20">
+    <div className="dark cm-dark flex h-svh overflow-hidden bg-background text-foreground">
       <SidebarShell role={user.role} collapsed={collapsed} onToggleCollapsed={toggle} />
       <div className="flex min-w-0 flex-1 flex-col">
         <DashboardTopbar user={user} />

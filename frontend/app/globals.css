@@ -117,6 +117,48 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+/*
+ * "Command" theme: the dark navy look used for the command center dashboard
+ * and the auth screens (spec calls for citizens to get a distinct, high-
+ * contrast mobile emergency UI -- this scope intentionally does NOT apply to
+ * the field app). Scoped to a class, independent of the light/.dark tokens
+ * above, so it renders identically regardless of OS theme preference.
+ */
+.cm-dark {
+  color-scheme: dark;
+  --background: oklch(0.19 0.045 274);
+  --foreground: oklch(0.94 0.02 274);
+  --card: oklch(0.24 0.05 274);
+  --card-foreground: oklch(0.94 0.02 274);
+  --popover: oklch(0.24 0.05 274);
+  --popover-foreground: oklch(0.94 0.02 274);
+  --primary: oklch(0.63 0.19 275);
+  --primary-foreground: oklch(0.98 0.01 275);
+  --secondary: oklch(0.29 0.05 274);
+  --secondary-foreground: oklch(0.94 0.02 274);
+  --muted: oklch(0.29 0.05 274);
+  --muted-foreground: oklch(0.68 0.04 274);
+  --accent: oklch(0.32 0.06 274);
+  --accent-foreground: oklch(0.94 0.02 274);
+  --destructive: oklch(0.62 0.22 25);
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 10%);
+  --ring: oklch(0.63 0.19 275);
+  --chart-1: oklch(0.7 0.15 275);
+  --chart-2: oklch(0.75 0.16 155);
+  --chart-3: oklch(0.8 0.16 85);
+  --chart-4: oklch(0.68 0.2 25);
+  --chart-5: oklch(0.75 0.13 220);
+  --sidebar: oklch(0.15 0.04 274);
+  --sidebar-foreground: oklch(0.94 0.02 274);
+  --sidebar-primary: oklch(0.63 0.19 275);
+  --sidebar-primary-foreground: oklch(0.98 0.01 275);
+  --sidebar-accent: oklch(0.29 0.05 274);
+  --sidebar-accent-foreground: oklch(0.94 0.02 274);
+  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-ring: oklch(0.63 0.19 275);
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -126,5 +168,33 @@
   }
   html {
     @apply font-sans;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes mesh-pulse {
+    0%, 100% { opacity: 0.15; }
+    50% { opacity: 0.7; }
+  }
+
+  @keyframes mesh-float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(0, -1.2px); }
+  }
+
+  .animate-mesh-pulse {
+    animation: mesh-pulse 4s ease-in-out infinite;
+  }
+
+  .animate-mesh-float {
+    animation: mesh-float 5s ease-in-out infinite;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-mesh-pulse {
+    opacity: 0.35;
   }
 }
