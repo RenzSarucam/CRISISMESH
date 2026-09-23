@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "@/hooks/use-session";
 import { useSidebarCollapsed } from "@/hooks/use-sidebar-collapsed";
+import { useBodyTheme } from "@/hooks/use-body-theme";
 import { SidebarShell } from "@/components/dashboard/sidebar";
 import { DashboardTopbar } from "@/components/dashboard/topbar";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -15,6 +16,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const { user, loading } = useSession();
   const router = useRouter();
   const { collapsed, toggle } = useSidebarCollapsed();
+  useBodyTheme("dark cm-dark");
 
   useEffect(() => {
     if (loading) return;

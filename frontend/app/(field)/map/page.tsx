@@ -10,7 +10,7 @@ const FieldMap = dynamic(() => import("@/components/field/field-map").then((m) =
 
 export default function FieldMapPage() {
   return (
-    <div className="h-[calc(100svh-8.5rem)] w-full">
+    <div className="relative isolate h-[calc(100svh-8.5rem)] w-full">
       <FieldMap />
     </div>
   );

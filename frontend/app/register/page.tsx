@@ -27,6 +27,7 @@ import {
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { LogoMark } from "@/components/logo";
 import { MeshBackground } from "@/components/mesh-background";
+import { useBodyTheme } from "@/hooks/use-body-theme";
 import { useRegisterMutation } from "@/hooks/use-auth-forms";
 import { useSession } from "@/hooks/use-session";
 import { ApiClientError } from "@/lib/api/client";
@@ -52,6 +53,7 @@ export default function RegisterPage() {
   const router = useRouter();
   const { user, loading } = useSession();
   const register = useRegisterMutation();
+  useBodyTheme("dark cm-dark");
 
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
