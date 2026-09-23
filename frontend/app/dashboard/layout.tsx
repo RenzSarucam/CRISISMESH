@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "@/hooks/use-session";
+import { useSidebarCollapsed } from "@/hooks/use-sidebar-collapsed";
 import { SidebarShell } from "@/components/dashboard/sidebar";
 import { DashboardTopbar } from "@/components/dashboard/topbar";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -13,6 +14,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const { user, loading } = useSession();
   const router = useRouter();
+  const { collapsed, toggle } = useSidebarCollapsed();
 
   useEffect(() => {
     if (loading) return;
@@ -40,7 +42,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   return (
     <div className="flex h-svh overflow-hidden bg-muted/20">
-      <SidebarShell role={user.role} />
+      <SidebarShell role={user.role} collapsed={collapsed} onToggleCollapsed={toggle} />
       <div className="flex min-w-0 flex-1 flex-col">
         <DashboardTopbar user={user} />
         <main className="flex-1 overflow-y-auto p-4 md:p-6">{children}</main>
