@@ -1,11 +1,13 @@
 "use client";
 
-import { AlertTriangle } from "lucide-react";
+import { useState } from "react";
+import { AlertTriangle, UserPlus } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -14,6 +16,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { AddResponderDialog } from "@/components/dashboard/responders/add-responder-dialog";
+import { useSession } from "@/hooks/use-session";
 import { useResponders } from "@/hooks/use-users";
 import { asItems } from "@/lib/api/as-items";
 import { ApiClientError } from "@/lib/api/client";
@@ -28,18 +32,30 @@ function onlineStatus(lastActiveAt?: string | null): "Online" | "Offline" | "Unk
 }
 
 export default function RespondersPage() {
+  const { user } = useSession();
   const { data, isLoading, isError, error } = useResponders();
   const responders = asItems(data);
+  const [addOpen, setAddOpen] = useState(false);
 
   return (
     <div className="flex flex-col gap-4">
-      <div>
-        <h1 className="text-lg font-semibold tracking-tight">Responders</h1>
-        <p className="text-sm text-muted-foreground">
-          Status is derived from last activity — there is no separate &quot;busy&quot; state in the API, so
-          this only ever shows Online, Offline, or Unknown.
-        </p>
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <h1 className="text-lg font-semibold tracking-tight">Responders</h1>
+          <p className="text-sm text-muted-foreground">
+            Status is derived from last activity — there is no separate &quot;busy&quot; state in the API,
+            so this only ever shows Online, Offline, or Unknown.
+          </p>
+        </div>
+        {user?.role === "admin" && (
+          <Button onClick={() => setAddOpen(true)} className="shrink-0 gap-1.5">
+            <UserPlus className="size-3.5" />
+            Add responder
+          </Button>
+        )}
       </div>
+
+      <AddResponderDialog open={addOpen} onOpenChange={setAddOpen} />
 
       {isError && (
         <Alert variant="destructive">

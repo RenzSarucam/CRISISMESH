@@ -51,6 +51,7 @@ Route::prefix('v1')->group(function () {
         Route::delete('/evacuation-centers/{evacuation_center}', [EvacuationCenterController::class, 'destroy'])->middleware('role:admin');
 
         Route::get('/users', [UserController::class, 'index'])->middleware('role:admin');
+        Route::post('/users', [UserController::class, 'store'])->middleware('role:admin');
 
         Route::get('/zones', [ZoneController::class, 'index']);
         Route::post('/zones', [ZoneController::class, 'store'])->middleware('role:admin');

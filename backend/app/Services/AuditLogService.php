@@ -27,6 +27,8 @@ class AuditLogService
 
     public const USER_ROLE_CHANGED = 'USER_ROLE_CHANGED';
 
+    public const USER_CREATED = 'USER_CREATED';
+
     public const ADMIN_LOGIN = 'ADMIN_LOGIN';
 
     /**

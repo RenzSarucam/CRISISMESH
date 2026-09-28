@@ -1,6 +1,6 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/lib/api/client";
 import type { Paginated, Role, User } from "@/types";
 
@@ -9,12 +9,9 @@ export interface UserFilters {
   role?: Role;
 }
 
-/** GET /users is NOT in docs/contract.md's endpoint list — the contract only
- * documents /auth/me for reading the current user. This hook assumes a
- * conventional admin-only listing endpoint (with an optional `role` filter)
- * because /dashboard/users, /dashboard/responders, and the incident/SOS
- * "assign responder" pickers all need one. Flagged as a contract gap: please
- * confirm the real path/shape with the backend before relying on this. */
+/** GET /users?role= — admin-only user directory (docs/contract.md). Also
+ * backs /dashboard/users, /dashboard/responders, and the assign-responder
+ * pickers on incidents/SOS. */
 export function useUsers(filters: UserFilters = {}) {
   return useQuery({
     queryKey: ["users", filters],
@@ -24,4 +21,27 @@ export function useUsers(filters: UserFilters = {}) {
 
 export function useResponders() {
   return useUsers({ role: "responder" });
+}
+
+export interface CreateUserInput {
+  name: string;
+  email: string;
+  password: string;
+  password_confirmation: string;
+  role: Role;
+  phone?: string;
+  emergency_contact?: string;
+}
+
+/** POST /users — admin creates an account directly (no invite/email flow in
+ * this MVP). Deliberately does NOT touch the current session/token: this is
+ * the admin acting on someone else's behalf, not a login. */
+export function useCreateUserMutation() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (input: CreateUserInput) => api.post<User>("/users", input),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["users"] });
+    },
+  });
 }

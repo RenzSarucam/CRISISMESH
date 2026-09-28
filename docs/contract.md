@@ -101,6 +101,7 @@ id, user_id, type, title, body, read_at, data(json), created_at
 - DELETE /evacuation-centers/{id} (admin)
 
 - GET /users?role= (admin only — user directory, responder-assignment pickers)
+- POST /users (admin only — admin creates an account directly: name, email, password, password_confirmation, role [citizen|responder|admin], phone?, emergency_contact?. No token returned; this doesn't log the admin in as the new user.)
 
 - GET /zones
 - POST /zones (admin)

@@ -16,6 +16,11 @@ class UserPolicy
         return $user->isAdmin() || $user->id === $target->id;
     }
 
+    public function create(User $user): bool
+    {
+        return $user->isAdmin();
+    }
+
     public function changeRole(User $user, User $target): bool
     {
         return $user->isAdmin();
