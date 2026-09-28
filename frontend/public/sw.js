@@ -3,7 +3,7 @@
 // containing incident/SOS/user data — that lives in IndexedDB (see
 // lib/offline/db.ts) with its own sync lifecycle, not the HTTP cache, so we
 // never serve stale emergency data as if it were fresh.
-const CACHE_NAME = "crisismesh-shell-v3";
+const CACHE_NAME = "crisismesh-shell-v4";
 // Every route a citizen must be able to reach with zero connectivity (spec
 // section 38) needs to be precached up front -- Next's router can still fall
 // back to a full document navigation when a client-side transition's RSC
