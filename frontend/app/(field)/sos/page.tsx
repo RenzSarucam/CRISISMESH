@@ -154,7 +154,7 @@ export default function SosPage() {
 
           <button
             aria-label="Hold to send SOS"
-            className="relative flex size-48 select-none items-center justify-center rounded-full bg-red-600 text-white shadow-lg outline-none focus-visible:ring-4 focus-visible:ring-red-300 active:scale-95"
+            className="relative flex size-48 select-none items-center justify-center rounded-full bg-red-600 text-white shadow-[0_8px_30px_-4px_rgba(220,38,38,0.5)] outline-none transition-transform duration-150 focus-visible:ring-4 focus-visible:ring-red-300 active:scale-95"
             onPointerDown={startHold}
             onPointerUp={cancelHold}
             onPointerLeave={cancelHold}

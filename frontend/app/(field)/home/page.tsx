@@ -55,34 +55,42 @@ export default function FieldHomePage() {
 
       <section aria-label="Quick actions" className="grid grid-cols-2 gap-3">
         <Link href="/sos">
-          <Card className="border-red-200 bg-red-50 transition-colors hover:bg-red-100 dark:border-red-900 dark:bg-red-950 dark:hover:bg-red-900">
+          <Card className="border-red-200 bg-red-50 transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md active:scale-[0.97] dark:border-red-900 dark:bg-red-950">
             <CardContent className="flex flex-col items-center gap-2 py-6">
-              <Siren className="size-8 text-red-600" />
+              <div className="flex size-12 items-center justify-center rounded-full bg-red-100 dark:bg-red-900/60">
+                <Siren className="size-6 text-red-600 dark:text-red-400" />
+              </div>
               <span className="font-semibold text-red-700 dark:text-red-400">SOS</span>
             </CardContent>
           </Card>
         </Link>
         <Link href="/report">
-          <Card className="transition-colors hover:bg-accent">
+          <Card className="transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md active:scale-[0.97]">
             <CardContent className="flex flex-col items-center gap-2 py-6">
-              <FilePlus2 className="size-8" />
+              <div className="flex size-12 items-center justify-center rounded-full bg-primary/10">
+                <FilePlus2 className="size-6 text-primary" />
+              </div>
               <span className="font-semibold">Report Incident</span>
             </CardContent>
           </Card>
         </Link>
         <Card
-          className="cursor-pointer transition-colors hover:bg-accent"
+          className="cursor-pointer transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md active:scale-[0.97]"
           onClick={() => getCurrentPosition().then((p) => setPosition([p.latitude, p.longitude]))}
         >
           <CardContent className="flex flex-col items-center gap-2 py-6">
-            <MapPin className="size-8" />
+            <div className="flex size-12 items-center justify-center rounded-full bg-primary/10">
+              <MapPin className="size-6 text-primary" />
+            </div>
             <span className="font-semibold">My Location</span>
           </CardContent>
         </Card>
         <Link href="/map">
-          <Card className="transition-colors hover:bg-accent">
+          <Card className="transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md active:scale-[0.97]">
             <CardContent className="flex flex-col items-center gap-2 py-6">
-              <MapIcon className="size-8" />
+              <div className="flex size-12 items-center justify-center rounded-full bg-primary/10">
+                <MapIcon className="size-6 text-primary" />
+              </div>
               <span className="font-semibold">Map</span>
             </CardContent>
           </Card>
@@ -102,7 +110,9 @@ export default function FieldHomePage() {
           return (
             <Card key={r.uuid}>
               <CardContent className="flex items-center gap-3 py-3">
-                <Icon className="size-5 shrink-0 text-muted-foreground" />
+                <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-muted">
+                  <Icon className="size-4 text-muted-foreground" />
+                </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium">{r.name}</p>
                   <p className="text-xs text-muted-foreground">{r.availability}</p>
